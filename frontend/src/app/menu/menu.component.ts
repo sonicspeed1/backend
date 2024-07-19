@@ -13,12 +13,14 @@ import { meseros } from '../meseros';
 export class MenuComponent implements OnInit {
   comidas: Comida[] = [];
   meseros: meseros[] = [];
+  pedidos: pedido[]= [];
 
   constructor(private comidasService: ComidasService, private pedidosService: PedidosService) {}
 
   ngOnInit(): void {
     this.cargarComidas();
     this.cargarMeseros();
+    this.cargarPedidos();
   }
 
   cargarComidas() {
@@ -47,11 +49,41 @@ export class MenuComponent implements OnInit {
       (pedidoCreado) => {
         console.log('Pedido creado:', pedidoCreado);
         alert(`Su comida: ${pedidoCreado.comida} será entregada por el mesero: ${pedidoCreado.mesero} con la cantidad de: ${pedidoCreado.precio} dólares`);
+        this.cargarPedidos();
       },
       (error) => {
         console.error('Error al crear el pedido:', error);
         alert('Error al crear el pedido. Inténtalo de nuevo.');
       }
+    );
+  }
+  cargarPedidos(): void {
+    this.pedidosService.obtenerPedidos().subscribe(
+      (pedidos: pedido[]) => {
+        this.pedidos = pedidos;
+      },
+      (error) => {
+        console.error('Error al cargar los pedidos', error);
+        // Manejo de errores, por ejemplo, mostrar un mensaje al usuario
+      }
+    );
+  }
+
+  eliminarPedido(id: string): void {
+    this.pedidosService.eliminarPedido(id).subscribe(
+      () => {
+        console.log('Pedido eliminado correctamente');
+        // Actualizar la lista de pedidos después de eliminar uno
+        this.cargarPedidos();
+      },
+      (error) => {
+        console.error('Error al eliminar el pedido', error);
+        // Manejo de errores, por ejemplo, mostrar un mensaje al usuario
+      }
+    );
+  }
+
+}
     );
   }
 }
