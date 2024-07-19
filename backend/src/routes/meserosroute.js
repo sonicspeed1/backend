@@ -62,4 +62,5 @@ function calcularCalificacionActualizada(participacion, calificacionActual) {
   const nuevaCalificacion = calificacionActual + ajuste;
   return Math.max(0, Math.min(nuevaCalificacion, 20));
 }
+
 module.exports = router;
