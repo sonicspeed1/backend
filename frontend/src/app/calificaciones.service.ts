@@ -7,8 +7,8 @@ import { meseros } from './meseros';
   providedIn: 'root'
 })
 export class CalificacionesService {
-  private apiUrl = 'http://localhost:3000/calificacion'; 
-  private apiUrl1 = 'http://localhost:3000/calificacion/nombres'; 
+  private apiUrl = 'http://localhost:3000/meseros'; 
+  private apiUrl1 = 'http://localhost:3000/meseros/nombres'; 
 
   constructor(private httpClient: HttpClient) {}
 
