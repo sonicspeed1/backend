@@ -10,10 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 
-const calificacionRoute = require('./routes/calificacionroute');
-const comidaRoute = require('./routes/comidaroute');
+const calificacionRoute = require('./routes/meserosroute');
+const meseroRoute = require('./routes/comidaroute');
 const pedidoRoute = require('./routes/pedidoroute')
-app.use('/calificacion', calificacionRoute);
+app.use('/meseros', meseroRoute);
 app.use('/comidas', comidaRoute);
 app.use('/pedidos',pedidoRoute)
 
