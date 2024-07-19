@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const Mesero = require('../modelos/calificacion');
+const Mesero = require('../modelos/meseros');
 
 
 router.get('/cargar', async (req, res) => {
